@@ -29,7 +29,7 @@ public class files {
                 Transaction t = new Transaction(value[0], t_amount, value[2], value[3], t_time);
                 
                 trans_list.add(t);
-                System.out.println("Player: " + t.time);
+                System.out.println("Player: " + t.getPlayer());
             }
 
         } catch (FileNotFoundException e) {

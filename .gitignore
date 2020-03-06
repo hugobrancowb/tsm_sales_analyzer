@@ -1,8 +1,2 @@
-# Ignore data files created by the code
-allsales.json
-
-# ignore python cache folder
-__pycache__/
-
 .vscode/
-data/
+*.class
