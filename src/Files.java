@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class files {
+public class Files {
 	public static ArrayList<Transaction> import_file() {
 
         String csvFile = "data/Accounting_Azralon_expenses.csv";
