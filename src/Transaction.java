@@ -1,20 +1,25 @@
+import java.util.Date;
+
 public class Transaction {
 
     private String type = "";
     private int amount = 0;
     private String otherPlayer = "";
     private String player = "";
-    private int time = 0;
+    private Date time;
 
     public Transaction() {
     }
     
 	public Transaction(String type, int amount, String otherPlayer, String player, int time) {
+		Date t = new Date ();
+		t.setTime((long)time*1000);
+		
 		this.type = type;
 		this.amount = amount;
 		this.otherPlayer = otherPlayer;
 		this.player = player;
-		this.time = time;
+		this.time = t;
 	}
 
 	public String getType() {
@@ -49,11 +54,11 @@ public class Transaction {
 		this.player = player;
 	}
 
-	public int getTime() {
+	public Date getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(Date time) {
 		this.time = time;
 	}
 

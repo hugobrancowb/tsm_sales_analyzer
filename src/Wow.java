@@ -10,6 +10,7 @@ public class Wow {
 		lista mas só pode ser acessada quando faço o get */
 
         lista = ListTrans.getTrans_list(); /* funciona */
+        System.out.println("");
 	}
 
 }
