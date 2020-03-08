@@ -11,7 +11,6 @@ public class Files {
         String csvFile = "data/Accounting_Azralon_expenses.csv";
         BufferedReader br = null;
         String line = "";
-        // ArrayList<Transaction> trans_list = new ArrayList<>();
 
         try {
 
@@ -26,10 +25,7 @@ public class Files {
                 int t_amount = Integer.parseInt(value[1]);
                 int t_time = Integer.parseInt(value[4]);
                 
-                //Transaction t = new Transaction(value[0], t_amount, value[2], value[3], t_time);
-                
                 ListTrans.addNew(value[0], t_amount, value[2], value[3], t_time);
-                //System.out.println("Player: " + t.getPlayer());
             }
 
         } catch (FileNotFoundException e) {
