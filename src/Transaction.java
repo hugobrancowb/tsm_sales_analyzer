@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.util.Calendar;
 
 public class Transaction {
 
@@ -6,14 +6,15 @@ public class Transaction {
     private int amount = 0;
     private String otherPlayer = "";
     private String player = "";
-    private Date time;
+    private Calendar time;
 
     public Transaction() {
     }
     
-	public Transaction(String type, int amount, String otherPlayer, String player, int time) {
-		Date t = new Date ();
-		t.setTime((long)time*1000);
+	public Transaction(String type, int amount, String otherPlayer, String
+	player, int time) {
+		Calendar t = Calendar.getInstance();
+		t.setTimeInMillis((long)time*1000);
 		
 		this.type = type;
 		this.amount = amount;
@@ -21,6 +22,8 @@ public class Transaction {
 		this.player = player;
 		this.time = t;
 	}
+	
+	/* getters and setters */
 
 	public String getType() {
 		return type;
@@ -54,12 +57,11 @@ public class Transaction {
 		this.player = player;
 	}
 
-	public Date getTime() {
+	public Calendar getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(Calendar time) {
 		this.time = time;
 	}
-
 }
