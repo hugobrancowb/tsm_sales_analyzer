@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Files {
 	public static ArrayList<Transaction> import_file() {
 
-        String csvFile = "data/Accounting_Azralon_expenses.csv";
+        String csvFile = "data/Accounting_Azralon_sales.csv";
         BufferedReader br = null;
         String line = "";
 
@@ -22,10 +22,13 @@ public class Files {
             while ((line = br.readLine()) != null) {
                 String[] value = line.split(",");
                 
-                int t_amount = Integer.parseInt(value[1]);
-                int t_time = Integer.parseInt(value[4]);
+                int t_stackSize = Integer.parseInt(value[2]);
+                int t_quantity = Integer.parseInt(value[3]);
+                float t_price = Float.parseFloat(value[4]);
+                int t_time = Integer.parseInt(value[7]);
                 
-                ListTrans.addNew(value[0], t_amount, value[2], value[3], t_time);
+                ListTrans.addNew(value[1], t_stackSize, t_quantity, t_price, value[5], value[6],
+                t_time, value[8]);
             }
 
         } catch (FileNotFoundException e) {

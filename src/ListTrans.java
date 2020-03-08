@@ -9,19 +9,25 @@ public class ListTrans {
     
     static ArrayList<Transaction> trans_list = new ArrayList<>();
     
-	public static void addNew(String type, int amount, String otherPlayer, String player, int time) {
-		Transaction t = new Transaction(type, amount, otherPlayer, player, time);
-		setSize(getSize() + 1);
+	public static void addNew(String itemName, int stackSize, int quantity, float price, String otherPlayer,
+				              String player, int time, String source) {
 		
-		if ((maxTime == null) || (minTime == null)) {
-			setMaxTime(t.getTime());
-			setMinTime(t.getTime());
-		} else {
-			setMaxTime(t.getTime().compareTo(maxTime) > 0 ? t.getTime() : maxTime);
-			setMinTime(minTime.compareTo(t.getTime()) > 0 ? t.getTime() : minTime);
+		if (source.equals("Auction") && (itemName.length() > 1)) {
+			Transaction t = new Transaction(itemName, stackSize, quantity, price, otherPlayer, player,
+					time, source);
+			
+			setSize(getSize() + 1);
+			
+			if ((maxTime == null) || (minTime == null)) {
+				setMaxTime(t.getTime());
+				setMinTime(t.getTime());
+			} else {
+				setMaxTime(t.getTime().compareTo(maxTime) > 0 ? t.getTime() : maxTime);
+				setMinTime(minTime.compareTo(t.getTime()) > 0 ? t.getTime() : minTime);
+			}
+			
+			trans_list.add(t);
 		}
-		
-		trans_list.add(t);
 	}
 	
 	public static int getSize() {

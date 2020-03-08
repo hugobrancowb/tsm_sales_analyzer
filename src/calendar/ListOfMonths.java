@@ -14,10 +14,9 @@ public class ListOfMonths {
 		System.out.println("maxTime = " + max.getTime());
 		System.out.println("minTime = " + min.getTime());
 		
-		Calendar index = min;
+		Calendar index = (Calendar)min.clone();;
 		
-		while((index.get(Calendar.MONTH) != max.get(Calendar.MONTH)) && 
-			  (index.get(Calendar.YEAR) != max.get(Calendar.YEAR))) {
+		while((index.get(Calendar.MONTH) != max.get(Calendar.MONTH)) || (index.get(Calendar.YEAR) != max.get(Calendar.YEAR))) {
 			
 			Calendar eachmonth = (Calendar)index.clone();			
 			listcalendar.add(eachmonth);
