@@ -1,25 +1,19 @@
 import java.util.ArrayList;
-import java.util.Calendar;
-import calendar.ListOfMonths;
+
+import Operations.ListTrans;
+import Operations.Transaction;
 
 
 public class Wow {
 
 	public static void main(String[] args) {
+		ArrayList<Transaction> lista = new ArrayList<>();
 		
-		/**/ArrayList<Transaction> lista = new ArrayList<>();
-		/**/ArrayList<Calendar> lista2 = new ArrayList<>();
-		
-		ListTrans.setTrans_list(Files.import_file()); /* isto é uma
-		lista mas só pode ser acessada quando faço o get */
+		ListTrans.setTrans_list(Files.import_file());
 
-		ListOfMonths.setListcalendar(
-		ListTrans.getMaxTime(),
-		ListTrans.getMinTime()
-		);
-		
-        /**/lista = ListTrans.getTrans_list(); /* funciona */
-        /**/lista2 = ListOfMonths.getListcalendar(); /* funciona */
+        lista = ListTrans.getTrans_list();
+        System.out.println("size of 2019 = " + ListTrans.getSize());
+        System.out.println("size of 2019 = " + lista.size());
 	}
 
 }

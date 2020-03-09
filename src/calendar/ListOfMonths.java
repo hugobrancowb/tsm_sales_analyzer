@@ -7,7 +7,7 @@ public class ListOfMonths {
 	
 	private static ArrayList<Calendar> listcalendar = new ArrayList<>();
 
-	public static void setListcalendar(Calendar max, Calendar min) {
+	public void setListcalendar(Calendar max, Calendar min) {
 		max.set(Calendar.DAY_OF_MONTH, 1);
 		min.set(Calendar.DAY_OF_MONTH, 1);
 		

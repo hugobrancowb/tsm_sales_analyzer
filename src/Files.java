@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import Operations.ListTrans;
+import Operations.Transaction;
 
 public class Files {
 	public static ArrayList<Transaction> import_file() {
@@ -20,15 +22,14 @@ public class Files {
             br.readLine(); /* descarta a primeira linha */
 
             while ((line = br.readLine()) != null) {
-                String[] value = line.split(",");
+
+            	String[] value = line.split(",");
                 
-                int t_stackSize = Integer.parseInt(value[2]);
                 int t_quantity = Integer.parseInt(value[3]);
                 float t_price = Float.parseFloat(value[4]);
-                int t_time = Integer.parseInt(value[7]);
+                Long t_time = Long.parseLong(value[7]);
                 
-                ListTrans.addNew(value[1], t_stackSize, t_quantity, t_price, value[5], value[6],
-                t_time, value[8]);
+                ListTrans.addNew(value[1], t_quantity, t_price, t_time, value[8]);
             }
 
         } catch (FileNotFoundException e) {
