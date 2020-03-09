@@ -16,15 +16,7 @@ public class ListTrans {
 			
 			if(t.getTime().get(Calendar.YEAR) == 2019) {
 
-				/* max and min time */
-				if ((maxTime == null) || (minTime == null)) {
-					setMaxTime(t.getTime());
-					setMinTime(t.getTime());
-				} else {
-					setMaxTime(t.getTime().compareTo(maxTime) > 0 ? t.getTime() : maxTime);
-					setMinTime(minTime.compareTo(t.getTime()) > 0 ? t.getTime() : minTime);
-				}
-				
+				setMaxMinTime(t);
 				
 				if (getSize() == 0) {
 					trans_list.add(t);	
@@ -55,6 +47,16 @@ public class ListTrans {
 		}
 	}
 	
+	private static void setMaxMinTime(Transaction t) {
+		if ((maxTime == null) || (minTime == null)) {
+			setMaxTime(t.getTime());
+			setMinTime(t.getTime());
+		} else {
+			setMaxTime(t.getTime().compareTo(maxTime) > 0 ? t.getTime() : maxTime);
+			setMinTime(minTime.compareTo(t.getTime()) > 0 ? t.getTime() : minTime);
+		}
+	}
+
 	public static int getSize() {
 		return trans_list.size();
 	}
@@ -63,7 +65,7 @@ public class ListTrans {
 		return maxTime;
 	}
 
-	public static void setMaxTime(Calendar maxTime) {
+	private static void setMaxTime(Calendar maxTime) {
 		ListTrans.maxTime = maxTime;
 	}
 
@@ -71,7 +73,7 @@ public class ListTrans {
 		return minTime;
 	}
 
-	public static void setMinTime(Calendar minTime) {
+	private static void setMinTime(Calendar minTime) {
 		ListTrans.minTime = minTime;
 	}
 
