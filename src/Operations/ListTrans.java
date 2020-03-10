@@ -21,7 +21,7 @@ public class ListTrans {
 				boolean exists = false;
 				
 				if (getSize() > 0) {
-					/* conferir se esse produto já foi vendido nesse mês-ano */
+					/* conferir se esse produto jï¿½ foi vendido nesse mï¿½s-ano */
 					
 					for(int i = 0; i < getSize(); i++) {
 						
@@ -54,6 +54,11 @@ public class ListTrans {
 			setMaxTime(t.getTime().compareTo(maxTime) > 0 ? t.getTime() : maxTime);
 			setMinTime(minTime.compareTo(t.getTime()) > 0 ? t.getTime() : minTime);
 		}
+	}
+
+	
+	public static Float getIncome(int position) {
+		return trans_list.get(position).getIncome();
 	}
 
 	public static int getSize() {
