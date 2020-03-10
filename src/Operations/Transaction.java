@@ -1,7 +1,7 @@
 package Operations;
 import java.util.Calendar;
 
-public class Transaction {
+public class Transaction implements Comparable<Transaction> {
 
     private String itemName;
     private float income;
@@ -19,6 +19,11 @@ public class Transaction {
 		this.income = quantity*price;
 		this.time = t;
 		
+	}
+	
+	@Override
+	public int compareTo(Transaction t) {
+		return (int)(t.getIncome() - income);
 	}
 
 	/* getters and setters */
