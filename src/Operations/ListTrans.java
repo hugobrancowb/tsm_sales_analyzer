@@ -1,6 +1,8 @@
 package Operations;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class ListTrans {
 	
@@ -21,7 +23,7 @@ public class ListTrans {
 				boolean exists = false;
 				
 				if (getSize() > 0) {
-					/* conferir se esse produto jï¿½ foi vendido nesse mï¿½s-ano */
+					/* conferir se esse produto já foi vendido nesse mês-ano */
 					
 					for(int i = 0; i < getSize(); i++) {
 						
@@ -55,7 +57,31 @@ public class ListTrans {
 			setMinTime(minTime.compareTo(t.getTime()) > 0 ? t.getTime() : minTime);
 		}
 	}
-
+	
+	public static void printReport(int size) {
+		//ListOfMonths calendar_range = new ListOfMonths();
+		//calendar_range.setListcalendar(getMaxTime(), getMinTime());
+		
+		for (int m = 11; m >= 0; m--) { /* by month */
+			int mes = m+1;
+			System.out.println("Mes: " + mes);
+			ArrayList<Transaction> toplist = new ArrayList<>();
+			
+			for(Transaction t: ListTrans.getTrans_list()) {
+				if (t.getMonth() == m) {
+					toplist.add(t);
+				}
+			}
+			
+			Collections.sort(toplist);
+			
+			for(int i = 0; i < size; i++) {
+				Transaction t = toplist.get(i);
+				System.out.println(t.getItemName() + " - " + t.getIncome()/10000);
+			}
+			System.out.println("");
+		}
+	}
 	
 	public static Float getIncome(int position) {
 		return trans_list.get(position).getIncome();
