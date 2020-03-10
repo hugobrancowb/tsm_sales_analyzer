@@ -28,6 +28,18 @@ public class Transaction implements Comparable<Transaction> {
 
 	/* getters and setters */
 	
+	public String getFullDate() {
+		String s = "";
+		
+		s = s.concat(Integer.toString(this.getTime().get(Calendar.DAY_OF_MONTH)));
+		s = s.concat("/");
+		s = s.concat(Integer.toString(this.getTime().get(Calendar.MONTH) + 1));
+		s = s.concat("/");
+		s = s.concat(Integer.toString(this.getTime().get(Calendar.YEAR)));		
+		
+		return s;
+	}
+	
 	public String getItemName() {
 		return itemName;
 	}
