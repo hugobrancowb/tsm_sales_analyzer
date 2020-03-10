@@ -5,7 +5,9 @@ import java.util.Calendar;
 
 public class ListOfMonths {
 	
-	private static ArrayList<Calendar> listcalendar = new ArrayList<>();
+	private ArrayList<Calendar> listcalendar = new ArrayList<>();
+	
+	public ListOfMonths() {}
 
 	public void setListcalendar(Calendar max, Calendar min) {
 		max.set(Calendar.DAY_OF_MONTH, 1);
@@ -25,7 +27,15 @@ public class ListOfMonths {
 		listcalendar.add(index); /* add the last month */
 	}
 
-	public static ArrayList<Calendar> getListcalendar() {
+	private ArrayList<Calendar> getListcalendar() {
 		return listcalendar;
+	}
+
+	public int getMonth(int i) {
+		return getListcalendar().get(i).get(Calendar.MONTH);
+	}
+	
+	public int getYear(int i) {
+		return getListcalendar().get(i).get(Calendar.YEAR);
 	}
 }
