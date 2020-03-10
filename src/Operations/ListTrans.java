@@ -9,7 +9,7 @@ public class ListTrans {
 
 	static ArrayList<Transaction> trans_list = new ArrayList<>();
     
-	public static void addNew(String itemName, int quantity, float price, float time, String source) {
+	public static void addNew(String itemName, int quantity, float price, long time, String source) {
 		
 		if (source.equalsIgnoreCase("Auction") && (itemName.length() > 1)) {
 			Transaction t = new Transaction(itemName, quantity, price, time);
@@ -18,11 +18,10 @@ public class ListTrans {
 
 				setMaxMinTime(t);
 				
-				if (getSize() == 0) {
-					trans_list.add(t);	
-				} else {
-					/* conferir se esse produto já foi vendido nesse mês/ano */
-					boolean exists = false;
+				boolean exists = false;
+				
+				if (getSize() > 0) {
+					/* conferir se esse produto já foi vendido nesse mês-ano */
 					
 					for(int i = 0; i < getSize(); i++) {
 						
@@ -30,19 +29,19 @@ public class ListTrans {
 						
 						if(t_og.getItemName().equals(t.getItemName()) &&
 						  (t_og.getTime().get(Calendar.MONTH) == t.getTime().get(Calendar.MONTH))
-						  ) {
-							
+						  ) { /* confere apenas mes pois ja filtrei o ano de 2019 */
+							  /* em breve irei mudar o filtro de ano */							
 							t_og.setIncome(t_og.getIncome() + t.getIncome());
 							exists = true;
 							break;
 							
 						}						
 					}
-					
-					if(!exists) {
-						trans_list.add(t);
-					}
-				}				
+				}	
+				
+				if((!exists) || (getSize() == 0)) {
+					trans_list.add(t);
+				}
 			}
 		}
 	}

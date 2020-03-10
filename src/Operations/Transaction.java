@@ -10,12 +10,11 @@ public class Transaction {
     public Transaction() {
     }
     
-	public Transaction(String itemName, int quantity, float price, float time) {
+	public Transaction(String itemName, int quantity, float price, long time) {
 		
 		Calendar t = Calendar.getInstance();
-		t.setTimeInMillis((long)time*1000);
-		t.set(Calendar.DAY_OF_MONTH,1);
-		
+		t.setTimeInMillis(time*1000);
+				
 		this.itemName = itemName;
 		this.income = quantity*price;
 		this.time = t;
