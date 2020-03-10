@@ -55,4 +55,12 @@ public class Transaction implements Comparable<Transaction> {
 	public Calendar getTime() {
 		return time;
 	}
+	
+	public int getYear() {
+		return time.get(Calendar.YEAR);
+	}
+	
+	public int getMonth() {
+		return time.get(Calendar.MONTH);
+	}
 }

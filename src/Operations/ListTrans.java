@@ -28,7 +28,7 @@ public class ListTrans {
 						Transaction t_og = trans_list.get(i);
 						
 						if(t_og.getItemName().equals(t.getItemName()) &&
-						  (t_og.getTime().get(Calendar.MONTH) == t.getTime().get(Calendar.MONTH))
+						  (t_og.getMonth() == t.getMonth())
 						  ) { /* confere apenas mes pois ja filtrei o ano de 2019 */
 							  /* em breve irei mudar o filtro de ano */							
 							t_og.setIncome(t_og.getIncome() + t.getIncome());
