@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
+import calendar.ListOfMonths;
+
 public class ListTrans {
 	
 	private static Calendar maxTime = null;
@@ -58,24 +60,28 @@ public class ListTrans {
 		}
 	}
 	
-	public static void printReport(int size) {
-		//ListOfMonths calendar_range = new ListOfMonths();
-		//calendar_range.setListcalendar(getMaxTime(), getMinTime());
+	public static void printReport(int range, int top_products) {
+		ListOfMonths calendar_range = new ListOfMonths();
+		calendar_range.setListcalendar(getMaxTime(), getMinTime());
 		
-		for (int m = 11; m >= 0; m--) { /* by month */
-			int mes = m+1;
-			System.out.println("Mes: " + mes);
+		for (int m = calendar_range.getSize() - 1; m >= calendar_range.getSize()-range; m--) { /* by month */
+			
+			int mes = calendar_range.getMonth(m) + 1;
+			int ano = calendar_range.getYear(m);
+			
+			System.out.println("Ano: " + ano + "; Mes: " + mes);
+			
 			ArrayList<Transaction> toplist = new ArrayList<>();
 			
 			for(Transaction t: ListTrans.getTrans_list()) {
-				if (t.getMonth() == m) {
+				if ((t.getMonth() == mes-1) && (t.getYear() == ano)) {
 					toplist.add(t);
 				}
 			}
 			
 			Collections.sort(toplist);
 			
-			for(int i = 0; i < size; i++) {
+			for(int i = 0; i < top_products; i++) {
 				Transaction t = toplist.get(i);
 				System.out.println(t.getItemName() + " - " + t.getIncome()/10000);
 			}
