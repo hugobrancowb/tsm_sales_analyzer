@@ -17,35 +17,31 @@ public class ListTrans {
 		
 		if (source.equalsIgnoreCase("Auction") && (itemName.length() > 1)) {
 			Transaction t = new Transaction(itemName, quantity, price, time);
-			
-			if(t.getTime().get(Calendar.YEAR) == 2019) {
 
-				setMaxMinTime(t);
+			setMaxMinTime(t);
+			
+			boolean exists = false;
+			
+			if (getSize() > 0) {
+				/* conferir se esse produto já foi vendido nesse mês-ano */
 				
-				boolean exists = false;
-				
-				if (getSize() > 0) {
-					/* conferir se esse produto já foi vendido nesse mês-ano */
+				for(int i = 0; i < getSize(); i++) {
 					
-					for(int i = 0; i < getSize(); i++) {
-						
-						Transaction t_og = trans_list.get(i);
-						
-						if(t_og.getItemName().equals(t.getItemName()) &&
-						  (t_og.getMonth() == t.getMonth())
-						  ) { /* confere apenas mes pois ja filtrei o ano de 2019 */
-							  /* em breve irei mudar o filtro de ano */							
-							t_og.setIncome(t_og.getIncome() + t.getIncome());
-							exists = true;
-							break;
-							
-						}						
-					}
-				}	
-				
-				if((!exists) || (getSize() == 0)) {
-					trans_list.add(t);
+					Transaction t_og = trans_list.get(i);
+					
+					if(t_og.getItemName().equals(t.getItemName()) &&
+					  (t_og.getMonth() == t.getMonth()) &&
+					  (t_og.getYear() == t.getYear())
+					  ) { 
+						t_og.setIncome(t_og.getIncome() + t.getIncome());
+						exists = true;
+						break;
+					}						
 				}
+			}	
+			
+			if((!exists) || (getSize() == 0)) {
+				trans_list.add(t);
 			}
 		}
 	}
@@ -63,8 +59,9 @@ public class ListTrans {
 	public static void printReport(int range, int top_products) {
 		ListOfMonths calendar_range = new ListOfMonths();
 		calendar_range.setListcalendar(getMaxTime(), getMinTime());
+		range = calendar_range.getSize() - range;
 		
-		for (int m = calendar_range.getSize() - 1; m >= calendar_range.getSize()-range; m--) { /* by month */
+		for (int m = calendar_range.getSize() - 1; m >= range; m--) { /* by month */
 			
 			int mes = calendar_range.getMonth(m) + 1;
 			int ano = calendar_range.getYear(m);
