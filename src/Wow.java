@@ -6,7 +6,6 @@ public class Wow {
 		
 		ListTrans.setTrans_list(Files.import_file());
 		ListTrans.printReport(3, 2);
-		
 	}
 
 }

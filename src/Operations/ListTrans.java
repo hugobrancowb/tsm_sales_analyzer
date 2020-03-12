@@ -66,7 +66,8 @@ public class ListTrans {
 			int mes = calendar_range.getMonth(m) + 1;
 			int ano = calendar_range.getYear(m);
 			
-			System.out.println("Ano: " + ano + "; Mes: " + mes);
+			String date_string = print_date_string(mes, ano);
+			System.out.println(date_string);
 			
 			ArrayList<Transaction> toplist = new ArrayList<>();
 			
@@ -84,6 +85,53 @@ public class ListTrans {
 			}
 			System.out.println("");
 		}
+	}
+
+	private static String print_date_string(int mes, int ano) {
+		String s = "";
+		
+		switch (mes) {
+		case 1:
+			s = "January";
+			break;
+		case 2:
+			s = "February";
+			break;
+		case 3:
+			s = "March";
+			break;
+		case 4:
+			s = "April";
+			break;
+		case 5:
+			s = "May";
+			break;
+		case 6:
+			s = "June";
+			break;
+		case 7:
+			s = "July";
+			break;
+		case 8:
+			s = "August";
+			break;
+		case 9:
+			s = "September";
+			break;
+		case 10:
+			s = "October";
+			break;
+		case 11:
+			s = "November";
+			break;
+		case 12:
+			s = "December";
+			break;
+		}
+		
+		s = s.concat(" of " + Integer.toString(ano) + ":");
+		
+		return s;		
 	}
 	
 	public static Float getIncome(int position) {
