@@ -67,7 +67,7 @@ public class UserWindow extends JFrame {
 		gridBagLayout.columnWidths = new int[]{0, 0, 34, 148, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
@@ -221,7 +221,7 @@ public class UserWindow extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ListTrans.setTrans_list(Files.import_file());
+							ListTrans.setTrans_list(Files.import_file(fileName));
 							ListTrans.printReport(months, items);
 							
 						} catch (Exception e) {
@@ -232,13 +232,6 @@ public class UserWindow extends JFrame {
 				
 			}
 		});
-		
-		Component verticalGlue = Box.createVerticalGlue();
-		GridBagConstraints gbc_verticalGlue = new GridBagConstraints();
-		gbc_verticalGlue.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalGlue.gridx = 2;
-		gbc_verticalGlue.gridy = 4;
-		getContentPane().add(verticalGlue, gbc_verticalGlue);
 		report_button.setBackground(Color.WHITE);
 		GridBagConstraints gbc_report_button = new GridBagConstraints();
 		gbc_report_button.insets = new Insets(0, 0, 5, 5);
