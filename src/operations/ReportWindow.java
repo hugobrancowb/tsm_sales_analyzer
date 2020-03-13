@@ -1,4 +1,4 @@
-package Operations;
+package operations;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;

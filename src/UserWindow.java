@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
 
-import Operations.ListTrans;
+import operations.ListTrans;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.SwingConstants;
@@ -216,7 +216,7 @@ public class UserWindow extends JFrame {
 		JButton report_button = new JButton("Get report");
 		report_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/* botão gerar relatorio report button*/
+				/* botï¿½o gerar relatorio report button*/
 				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
