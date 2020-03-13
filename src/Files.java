@@ -29,7 +29,7 @@ public class Files {
             
             line = br.readLine(); /* descarta a primeira linha */
             
-            test_for_errors(line, csvFile);
+            error_wrong_file(line, csvFile);
 
             while ((line = br.readLine()) != null) {
 
@@ -47,8 +47,7 @@ public class Files {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NullPointerException e) {
-        	System.out.println("CSV file not found.");
-        	System.exit(1);
+        	error_notfound();
         } finally {
             if (br != null) {
                 try {
@@ -62,7 +61,11 @@ public class Files {
         return ListTrans.getTrans_list();
     }
 
-	private static void test_for_errors(String line, String csvFile) {
+	private static void error_notfound() {
+		error_popup("CSV file not found.");
+	}
+	
+	private static void error_wrong_file(String line, String csvFile) {
 		
 		String[] input = line.split(",");
 		String[] path = csvFile.split("\\\\");
@@ -70,7 +73,6 @@ public class Files {
 		String[] csv = file[2].split("\\.");
 		String type = csv[0];
 		String format = csv[1];
-		
 		
         if(		(input.length != 9) || (
         		(input[1].compareTo("itemName") != 0) &&
@@ -81,14 +83,17 @@ public class Files {
         		(type.compareTo("sales") != 0) ||
         		(format.compareTo("csv") != 0) )
     		){
-        	JFrame errorframe = new JFrame("Show Message Box");
-        	errorframe.setBackground(Color.WHITE);
-        	JOptionPane.showMessageDialog(errorframe, "The chosen CSV file doesn't appear " + 
-        	"to be the right one.\r\nMake sure you choose " +
-        	"\"Accounting_[your realm]_sales.csv\"");
-        	
-        	System.exit(1);
+        	error_popup("The chosen CSV file doesn't appear " + 
+                	"to be the right one.\r\nMake sure you choose " +
+                	"\"Accounting_[your realm]_sales.csv\"");
     	}
-		
 	}
+	
+	private static void error_popup(String msg) {
+		JFrame errorframe = new JFrame("Show Message Box");
+    	errorframe.setBackground(Color.WHITE);
+    	JOptionPane.showMessageDialog(errorframe, msg);
+		System.exit(1);
+	}
+	
 }
