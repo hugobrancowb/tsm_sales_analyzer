@@ -61,13 +61,15 @@ public class ListTrans {
 		calendar_range.setListcalendar(getMaxTime(), getMinTime());
 		range = calendar_range.getSize() - range;
 		
+		ReportWindow frame = new ReportWindow();
+		frame.setVisible(true);
+		
 		for (int m = calendar_range.getSize() - 1; m >= range; m--) { /* by month */
 			
 			int mes = calendar_range.getMonth(m) + 1;
 			int ano = calendar_range.getYear(m);
 			
-			String date_string = print_date_string(mes, ano);
-			System.out.println(date_string);
+			String output_string = print_date_string(mes, ano);
 			
 			ArrayList<Transaction> toplist = new ArrayList<>();
 			
@@ -81,9 +83,13 @@ public class ListTrans {
 			
 			for(int i = 0; i < top_products; i++) {
 				Transaction t = toplist.get(i);
-				System.out.println(t.getItemName() + " - " + t.getIncome()/10000);
+				output_string = output_string.concat(
+											  "\r\n" + 
+						                      t.getItemName() +
+                                              " - " +
+                                              t.getIncome()/10000);
 			}
-			System.out.println("");
+			frame.addToPanel(output_string);
 		}
 	}
 
