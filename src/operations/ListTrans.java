@@ -59,7 +59,10 @@ public class ListTrans {
 	public static void printReport(int range, int top_products) {
 		ListOfMonths calendar_range = new ListOfMonths();
 		calendar_range.setListcalendar(getMaxTime(), getMinTime());
-		range = calendar_range.getSize() - range;
+		
+		range = calendar_range.getSize() >= range ?
+					calendar_range.getSize() - range :
+					0;
 		
 		ReportWindow frame = new ReportWindow();
 		frame.setVisible(true);
