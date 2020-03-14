@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.awt.GridBagLayout;
+
 import javax.swing.JTextPane;
 import java.awt.GridBagConstraints;
 import java.awt.Component;
@@ -45,8 +46,11 @@ public class ReportWindow extends JFrame {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		setLocationByPlatform(true);
-		setMinimumSize(new Dimension(450, 500));
+		/* size */
+		setMaximumSize(new Dimension(500, 2147483647));
+		setMinimumSize(new Dimension(500, 500));
+		/* position */
+		setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
