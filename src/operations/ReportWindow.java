@@ -1,6 +1,8 @@
 package operations;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import javax.swing.JTextPane;
 import java.awt.GridBagConstraints;
@@ -13,6 +15,12 @@ import javax.swing.JScrollPane;
 import java.awt.Cursor;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.awt.event.ActionEvent;
 
 public class ReportWindow extends JFrame {
 	/**
@@ -54,7 +62,7 @@ public class ReportWindow extends JFrame {
 		title_panel.setEditable(false);
 		title_panel.setBorder(new EmptyBorder(0, 20, 0, 0));
 		title_panel.setContentType("text/html");
-		title_panel.setText("<h2>Report by month</h2>");
+		title_panel.setText("<h2 style='font-family:tahoma;'>Report by month</h2>");
 		GridBagConstraints gbc_title_panel = new GridBagConstraints();
 		gbc_title_panel.fill = GridBagConstraints.BOTH;
 		gbc_title_panel.gridx = 0;
@@ -76,6 +84,20 @@ public class ReportWindow extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		savereport_button = new JButton("Save report");
+		savereport_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String output_report = "Report by month:\r\n\r\n";
+				output_report = output_report.concat(textPane.getText());
+				
+				try (PrintStream out = new PrintStream(new FileOutputStream("data/report.txt"))) {
+				    out.print(output_report);
+				} catch (FileNotFoundException e) {
+					error_popup("FileNotFoundException");
+				}
+			}
+		});
+		
 		savereport_button.setRequestFocusEnabled(false);
 		savereport_button.setBackground(Color.WHITE);
 		savereport_button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -107,5 +129,12 @@ public class ReportWindow extends JFrame {
 		String newtext = oldtext.concat(s);
 		newtext = newtext.concat("\r\n\r\n");
 		textPane.setText(newtext);
+	}
+	
+	private static void error_popup(String msg) {
+		JFrame errorframe = new JFrame("Show Message Box");
+    	errorframe.setBackground(Color.WHITE);
+    	JOptionPane.showMessageDialog(errorframe, msg);
+		System.exit(1);
 	}
 }
