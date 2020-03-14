@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import operations.ListTrans;
 import operations.Transaction;
@@ -104,6 +105,9 @@ public class UserWindow extends JFrame {
 		salesfile_field.setColumns(10);
 		
 		JButton salesfile_browse_button = new JButton("Browse");
+		FileNameExtensionFilter csvType = new FileNameExtensionFilter("CSV File (.csv)", "csv");
+		salesfile_file.addChoosableFileFilter(csvType);
+		salesfile_file.setAcceptAllFileFilterUsed(false);
 		salesfile_browse_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int returnVal = salesfile_file.showOpenDialog((Component)arg0.getSource());
