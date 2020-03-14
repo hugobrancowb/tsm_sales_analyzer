@@ -19,7 +19,6 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 
 public class ReportWindow extends JFrame {

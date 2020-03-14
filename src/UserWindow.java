@@ -16,17 +16,23 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
 
 import operations.ListTrans;
+import operations.Transaction;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 
 public class UserWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField salesfile_field;
 	private JTextField months_field;
 	private JTextField items_field;
@@ -109,7 +115,9 @@ public class UserWindow extends JFrame {
 			        } catch (Exception ex) {
 			          System.out.println("Problem accessing file"+file.getAbsolutePath());
 			        }
-			    }   
+			    } else {
+			    	System.out.println("file not found");
+			    }
 			}
 		});
 		salesfile_browse_button.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -221,8 +229,14 @@ public class UserWindow extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							ListTrans.setTrans_list(Files.import_file(fileName));
-							ListTrans.printReport(months, items);
+							ListTrans.clearList();
+							fileName = salesfile_field.getText();
+							ArrayList<Transaction> lista = Files.import_file(fileName);
+							
+							if(lista != null) {
+								ListTrans.setTrans_list(lista);
+								ListTrans.printReport(months, items);								
+							}
 							
 						} catch (Exception e) {
 							e.printStackTrace();

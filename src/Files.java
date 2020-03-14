@@ -13,9 +13,6 @@ import operations.ListTrans;
 import operations.Transaction;
 
 public class Files {
-	public static ArrayList<Transaction> import_file() {
-		return import_file("data/Accounting_Azralon_sales.csv");
-	}
 	
 	public static ArrayList<Transaction> import_file(String csvFile) {
 		
@@ -29,31 +26,37 @@ public class Files {
             
             line = br.readLine(); /* descarta a primeira linha */
             
-            error_wrong_file(line, csvFile);
-
-            while ((line = br.readLine()) != null) {
-
-            	String[] value = line.split(",");
-                
-                int t_quantity = Integer.parseInt(value[3]);
-                float t_price = Float.parseFloat(value[4]);
-                Long t_time = Long.parseLong(value[7]);
-                
-                ListTrans.addNew(value[1], t_quantity, t_price, t_time, value[8]);
+            if(error_wrong_file(line, csvFile) == 0) {
+            	while ((line = br.readLine()) != null) {
+            		
+            		String[] value = line.split(",");
+            		
+            		int t_quantity = Integer.parseInt(value[3]);
+            		float t_price = Float.parseFloat(value[4]);
+            		Long t_time = Long.parseLong(value[7]);
+            		
+            		ListTrans.addNew(value[1], t_quantity, t_price, t_time, value[8]);
+            	}
+            } else {
+            	return null;
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        	error_notfound();
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         } catch (NullPointerException e) {
         	error_notfound();
+        	return null;
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    return null;
                 }
             }
         }
@@ -65,7 +68,7 @@ public class Files {
 		error_popup("CSV file not found.");
 	}
 	
-	private static void error_wrong_file(String line, String csvFile) {
+	private static int error_wrong_file(String line, String csvFile) {
 		
 		String[] input = line.split(",");
 		String[] path = csvFile.split("\\\\");
@@ -73,6 +76,8 @@ public class Files {
 		String[] csv = file[2].split("\\.");
 		String type = csv[0];
 		String format = csv[1];
+		
+		int key = 0;
 		
         if(		(input.length != 9) || (
         		(input[1].compareTo("itemName") != 0) &&
@@ -86,14 +91,16 @@ public class Files {
         	error_popup("The chosen CSV file doesn't appear " + 
                 	"to be the right one.\r\nMake sure you choose " +
                 	"\"Accounting_[your realm]_sales.csv\"");
+        	key = 1;
     	}
+        
+        return key;
 	}
 	
 	private static void error_popup(String msg) {
 		JFrame errorframe = new JFrame("Show Message Box");
     	errorframe.setBackground(Color.WHITE);
     	JOptionPane.showMessageDialog(errorframe, msg);
-		System.exit(1);
 	}
 	
 }
