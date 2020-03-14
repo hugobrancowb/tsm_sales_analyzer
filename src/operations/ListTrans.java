@@ -1,5 +1,6 @@
 package operations;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -86,11 +87,21 @@ public class ListTrans {
 			
 			for(int i = 0; i < top_products; i++) {
 				Transaction t = toplist.get(i);
+				
+				/* format output */
+				float income = t.getIncome()/10000;
+				String income_text = income < 1000 ? /* é menor que mil? */
+						Float.toString(round(income, 2)) :
+						income < 1000000 ? /* é menor que um milhão? */
+							Float.toString(round(income/1000, 1)).concat("k") :
+							Float.toString(round(income/1000000, 1)).concat("M");
+				
 				output_string = output_string.concat(
 											  "\r\n" + 
 						                      t.getItemName() +
                                               " - " +
-                                              t.getIncome()/10000);
+                                              income_text + 
+                                              " gold");
 			}
 			frame.addToPanel(output_string);
 		}
@@ -141,6 +152,10 @@ public class ListTrans {
 		s = s.concat(" of " + Integer.toString(ano) + ":");
 		
 		return s;		
+	}
+	
+	public static float round(float d, int decimalPlace) {
+	    return BigDecimal.valueOf(d).setScale(decimalPlace, BigDecimal.ROUND_HALF_UP).floatValue();
 	}
 	
 	public static Float getIncome(int position) {
