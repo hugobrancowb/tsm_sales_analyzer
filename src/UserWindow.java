@@ -119,8 +119,6 @@ public class UserWindow extends JFrame {
 			        } catch (Exception ex) {
 			          System.out.println("Problem accessing file"+file.getAbsolutePath());
 			        }
-			    } else {
-			    	System.out.println("file not found");
 			    }
 			}
 		});
