@@ -14,12 +14,14 @@ import java.awt.Color;
 import javax.swing.JScrollPane;
 import java.awt.Cursor;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.awt.event.ActionEvent;
+import javax.swing.JFileChooser;
 
 public class ReportWindow extends JFrame {
 	/**
@@ -31,6 +33,10 @@ public class ReportWindow extends JFrame {
 	JTextPane textPane = new JTextPane();
 	private JPanel panel;
 	private JButton savereport_button;
+	/**
+	 * @wbp.nonvisual location=524,59
+	 */
+	private final JFileChooser fileChooser = new JFileChooser();
 	/**
 	 * Create the frame.
 	 */
@@ -89,10 +95,26 @@ public class ReportWindow extends JFrame {
 				String output_report = "Report by month:\r\n\r\n";
 				output_report = output_report.concat(textPane.getText());
 				
-				try (PrintStream out = new PrintStream(new FileOutputStream("data/report.txt"))) {
-				    out.print(output_report);
-				} catch (FileNotFoundException e) {
-					error_popup("FileNotFoundException");
+				/* get endereço */
+				String savepath = "";
+				FileNameExtensionFilter txtType = new FileNameExtensionFilter("Text File (.txt)", "txt");
+				fileChooser.addChoosableFileFilter(txtType);
+				fileChooser.setAcceptAllFileFilterUsed(false);
+				fileChooser.setDialogTitle("Specify a file to save");
+				int userSelection = fileChooser.showSaveDialog(contentPane);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					savepath = fileChooser.getSelectedFile().getAbsolutePath();
+					
+					/* checar se é .txt */
+					String extension = fileChooser.getSelectedFile().getName().endsWith("txt") ? "" : ".txt";
+					savepath = savepath.concat(extension);
+				
+					try (PrintStream out = new PrintStream(new FileOutputStream(savepath))) {
+					    out.print(output_report);
+					} catch (FileNotFoundException e) {
+						error_popup("FileNotFoundException");
+					}
 				}
 			}
 		});
