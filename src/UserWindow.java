@@ -28,6 +28,7 @@ import operations.Transaction;
 import javax.swing.event.ChangeEvent;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
+import java.awt.Cursor;
 
 public class UserWindow extends JFrame {
 	/**
@@ -69,13 +70,14 @@ public class UserWindow extends JFrame {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 460, 225);
+		setBounds(100, 100, 460, 262);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 34, 148, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
+		setLocationRelativeTo(null);
 		
 		Component rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
@@ -84,13 +86,42 @@ public class UserWindow extends JFrame {
 		gbc_rigidArea_1.gridy = 0;
 		getContentPane().add(rigidArea_1, gbc_rigidArea_1);
 		
+		JLabel lblNewLabel = new JLabel("TSM Sales Analyzer");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.gridwidth = 4;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 1;
+		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("github.com/hugobrancowb");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.gridwidth = 4;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 1;
+		gbc_lblNewLabel_1.gridy = 2;
+		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		Component abaixo_do_titulo = Box.createVerticalStrut(20);
+		abaixo_do_titulo.setMinimumSize(new Dimension(0, 10));
+		GridBagConstraints gbc_abaixo_do_titulo = new GridBagConstraints();
+		gbc_abaixo_do_titulo.insets = new Insets(0, 0, 5, 5);
+		gbc_abaixo_do_titulo.gridx = 2;
+		gbc_abaixo_do_titulo.gridy = 3;
+		getContentPane().add(abaixo_do_titulo, gbc_abaixo_do_titulo);
+		
 		JLabel salesfile_label = new JLabel("Sales file");
 		salesfile_label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_salesfile_label = new GridBagConstraints();
 		gbc_salesfile_label.insets = new Insets(0, 0, 5, 5);
 		gbc_salesfile_label.anchor = GridBagConstraints.EAST;
 		gbc_salesfile_label.gridx = 1;
-		gbc_salesfile_label.gridy = 1;
+		gbc_salesfile_label.gridy = 4;
 		getContentPane().add(salesfile_label, gbc_salesfile_label);
 		
 		salesfile_field = new JTextField();
@@ -100,7 +131,7 @@ public class UserWindow extends JFrame {
 		gbc_salesfile_field.insets = new Insets(0, 0, 5, 5);
 		gbc_salesfile_field.fill = GridBagConstraints.HORIZONTAL;
 		gbc_salesfile_field.gridx = 2;
-		gbc_salesfile_field.gridy = 1;
+		gbc_salesfile_field.gridy = 4;
 		getContentPane().add(salesfile_field, gbc_salesfile_field);
 		salesfile_field.setColumns(10);
 		
@@ -127,7 +158,7 @@ public class UserWindow extends JFrame {
 		GridBagConstraints gbc_salesfile_browse_button = new GridBagConstraints();
 		gbc_salesfile_browse_button.insets = new Insets(0, 0, 5, 5);
 		gbc_salesfile_browse_button.gridx = 4;
-		gbc_salesfile_browse_button.gridy = 1;
+		gbc_salesfile_browse_button.gridy = 4;
 		getContentPane().add(salesfile_browse_button, gbc_salesfile_browse_button);
 		
 		JLabel months_label = new JLabel("Number of months to be reported");
@@ -136,7 +167,7 @@ public class UserWindow extends JFrame {
 		gbc_months_label.insets = new Insets(0, 0, 5, 5);
 		gbc_months_label.anchor = GridBagConstraints.EAST;
 		gbc_months_label.gridx = 1;
-		gbc_months_label.gridy = 2;
+		gbc_months_label.gridy = 5;
 		getContentPane().add(months_label, gbc_months_label);
 		
 		months_field = new JTextField();
@@ -150,7 +181,7 @@ public class UserWindow extends JFrame {
 		gbc_months_field.anchor = GridBagConstraints.WEST;
 		gbc_months_field.insets = new Insets(0, 0, 5, 5);
 		gbc_months_field.gridx = 2;
-		gbc_months_field.gridy = 2;
+		gbc_months_field.gridy = 5;
 		getContentPane().add(months_field, gbc_months_field);
 		months_field.setColumns(5);
 		
@@ -170,7 +201,7 @@ public class UserWindow extends JFrame {
 		gbc_months_slider.fill = GridBagConstraints.HORIZONTAL;
 		gbc_months_slider.insets = new Insets(0, 0, 5, 5);
 		gbc_months_slider.gridx = 3;
-		gbc_months_slider.gridy = 2;
+		gbc_months_slider.gridy = 5;
 		getContentPane().add(months_slider, gbc_months_slider);
 		
 		JLabel items_label = new JLabel("Number of items per month's report");
@@ -179,7 +210,7 @@ public class UserWindow extends JFrame {
 		gbc_items_label.insets = new Insets(0, 0, 5, 5);
 		gbc_items_label.anchor = GridBagConstraints.EAST;
 		gbc_items_label.gridx = 1;
-		gbc_items_label.gridy = 3;
+		gbc_items_label.gridy = 6;
 		getContentPane().add(items_label, gbc_items_label);
 		
 		items_field = new JTextField();
@@ -193,7 +224,7 @@ public class UserWindow extends JFrame {
 		gbc_items_field.anchor = GridBagConstraints.WEST;
 		gbc_items_field.insets = new Insets(0, 0, 5, 5);
 		gbc_items_field.gridx = 2;
-		gbc_items_field.gridy = 3;
+		gbc_items_field.gridy = 6;
 		getContentPane().add(items_field, gbc_items_field);
 		items_field.setColumns(5);
 		
@@ -213,15 +244,15 @@ public class UserWindow extends JFrame {
 		gbc_items_slider.fill = GridBagConstraints.HORIZONTAL;
 		gbc_items_slider.insets = new Insets(0, 0, 5, 5);
 		gbc_items_slider.gridx = 3;
-		gbc_items_slider.gridy = 3;
+		gbc_items_slider.gridy = 6;
 		getContentPane().add(items_slider, gbc_items_slider);
 		
-		Component verticalStrut_2 = Box.createVerticalStrut(20);
-		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
-		gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalStrut_2.gridx = 2;
-		gbc_verticalStrut_2.gridy = 4;
-		getContentPane().add(verticalStrut_2, gbc_verticalStrut_2);
+		Component acima_do_botao = Box.createVerticalStrut(20);
+		GridBagConstraints gbc_acima_do_botao = new GridBagConstraints();
+		gbc_acima_do_botao.insets = new Insets(0, 0, 5, 5);
+		gbc_acima_do_botao.gridx = 2;
+		gbc_acima_do_botao.gridy = 7;
+		getContentPane().add(acima_do_botao, gbc_acima_do_botao);
 		
 		JButton report_button = new JButton("Get report");
 		report_button.addActionListener(new ActionListener() {
@@ -253,13 +284,13 @@ public class UserWindow extends JFrame {
 		gbc_report_button.insets = new Insets(0, 0, 5, 5);
 		gbc_report_button.gridwidth = 4;
 		gbc_report_button.gridx = 1;
-		gbc_report_button.gridy = 5;
+		gbc_report_button.gridy = 8;
 		getContentPane().add(report_button, gbc_report_button);
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
 		gbc_rigidArea.gridx = 5;
-		gbc_rigidArea.gridy = 6;
+		gbc_rigidArea.gridy = 9;
 		getContentPane().add(rigidArea, gbc_rigidArea);
 	}
 }
