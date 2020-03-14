@@ -70,12 +70,8 @@ public class Files {
 	
 	private static int error_wrong_file(String line, String csvFile) {
 		
+		/* header checking */
 		String[] input = line.split(",");
-		String[] path = csvFile.split("\\\\");
-		String[] file = path[7].split("_");
-		String[] csv = file[2].split("\\.");
-		String type = csv[0];
-		String format = csv[1];
 		
 		int key = 0;
 		
@@ -84,9 +80,8 @@ public class Files {
         		(input[3].compareTo("quantity") != 0) &&
         		(input[4].compareTo("price") != 0) &&
         		(input[7].compareTo("time") != 0) &&
-        		(input[8].compareTo("source") != 0)) || (
-        		(type.compareTo("sales") != 0) ||
-        		(format.compareTo("csv") != 0) )
+        		(input[8].compareTo("source") != 0)) ||
+        		(!csvFile.endsWith("sales.csv"))
     		){
         	error_popup("The chosen CSV file doesn't appear " + 
                 	"to be the right one.\r\nMake sure you choose " +
