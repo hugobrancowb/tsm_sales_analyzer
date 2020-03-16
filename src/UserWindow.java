@@ -29,6 +29,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Cursor;
+import javax.swing.border.EmptyBorder;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UserWindow extends JFrame {
 	/**
@@ -70,12 +75,12 @@ public class UserWindow extends JFrame {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 460, 262);
+		setBounds(100, 100, 530, 280);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 34, 148, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		setLocationRelativeTo(null);
 		
@@ -98,14 +103,14 @@ public class UserWindow extends JFrame {
 		gbc_lblNewLabel.gridy = 1;
 		getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("github.com/hugobrancowb");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 4;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 2;
-		getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel github_msg = new JLabel("github.com/hugobrancowb");
+		github_msg.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		GridBagConstraints gbc_github_msg = new GridBagConstraints();
+		gbc_github_msg.gridwidth = 4;
+		gbc_github_msg.insets = new Insets(0, 0, 5, 5);
+		gbc_github_msg.gridx = 1;
+		gbc_github_msg.gridy = 2;
+		getContentPane().add(github_msg, gbc_github_msg);
 		
 		Component abaixo_do_titulo = Box.createVerticalStrut(20);
 		abaixo_do_titulo.setMinimumSize(new Dimension(0, 10));
@@ -125,6 +130,26 @@ public class UserWindow extends JFrame {
 		getContentPane().add(salesfile_label, gbc_salesfile_label);
 		
 		salesfile_field = new JTextField();
+		salesfile_field.setForeground(Color.LIGHT_GRAY);
+		String placeholder_file_msg = "Select a 'Accounting_[realm]_sales.csv' file.";
+		salesfile_field.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (salesfile_field.getText().compareTo(placeholder_file_msg) == 0) {
+					salesfile_field.setText("");
+					salesfile_field.setForeground(Color.BLACK);
+				}
+			}
+			
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (salesfile_field.getText().compareTo("") == 0) {
+					salesfile_field.setText(placeholder_file_msg);
+					salesfile_field.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		});
+		salesfile_field.setText("Select a 'Accounting_[realm]_sales.csv' file.");
 		salesfile_label.setLabelFor(salesfile_field);
 		GridBagConstraints gbc_salesfile_field = new GridBagConstraints();
 		gbc_salesfile_field.gridwidth = 2;
@@ -171,6 +196,7 @@ public class UserWindow extends JFrame {
 		getContentPane().add(months_label, gbc_months_label);
 		
 		months_field = new JTextField();
+		months_field.setRequestFocusEnabled(false);
 		months_label.setLabelFor(months_field);
 		months_field.setHorizontalAlignment(SwingConstants.RIGHT);
 		months_field.setFocusable(false);
@@ -214,6 +240,7 @@ public class UserWindow extends JFrame {
 		getContentPane().add(items_label, gbc_items_label);
 		
 		items_field = new JTextField();
+		items_field.setRequestFocusEnabled(false);
 		items_label.setLabelFor(items_field);
 		items_field.setHorizontalAlignment(SwingConstants.RIGHT);
 		items_field.setFocusTraversalKeysEnabled(false);
@@ -289,8 +316,27 @@ public class UserWindow extends JFrame {
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
+		gbc_rigidArea.insets = new Insets(0, 0, 5, 0);
 		gbc_rigidArea.gridx = 5;
 		gbc_rigidArea.gridy = 9;
 		getContentPane().add(rigidArea, gbc_rigidArea);
+		
+		JLabel bug_msg = new JLabel("Report any bugs at hugobrancowb@gmail.com");
+		bug_msg.setBorder(new EmptyBorder(0, 0, 0, 5));
+		bug_msg.setForeground(Color.LIGHT_GRAY);
+		bug_msg.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		GridBagConstraints gbc_bug_msg = new GridBagConstraints();
+		gbc_bug_msg.anchor = GridBagConstraints.EAST;
+		gbc_bug_msg.gridwidth = 4;
+		gbc_bug_msg.gridx = 2;
+		gbc_bug_msg.gridy = 10;
+		getContentPane().add(bug_msg, gbc_bug_msg);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				salesfile_browse_button.requestFocus();
+			}
+		});
 	}
 }
