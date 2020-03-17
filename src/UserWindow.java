@@ -130,6 +130,7 @@ public class UserWindow extends JFrame {
 		getContentPane().add(salesfile_label, gbc_salesfile_label);
 		
 		salesfile_field = new JTextField();
+		salesfile_field.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		salesfile_field.setForeground(Color.LIGHT_GRAY);
 		String placeholder_file_msg = "Select a 'Accounting_[realm]_sales.csv' file.";
 		salesfile_field.addFocusListener(new FocusAdapter() {
@@ -212,6 +213,7 @@ public class UserWindow extends JFrame {
 		months_field.setColumns(5);
 		
 		JSlider months_slider = new JSlider();
+		months_slider.setBackground(Color.WHITE);
 		months_slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				months = months_slider.getValue();
@@ -256,6 +258,7 @@ public class UserWindow extends JFrame {
 		items_field.setColumns(5);
 		
 		JSlider items_slider = new JSlider();
+		items_slider.setBackground(Color.WHITE);
 		items_slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				items = items_slider.getValue();
@@ -284,7 +287,7 @@ public class UserWindow extends JFrame {
 		JButton report_button = new JButton("Get report");
 		report_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/* bot�o gerar relatorio report button*/
+				/* botï¿½o gerar relatorio report button*/
 				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
