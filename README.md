@@ -13,10 +13,14 @@ Select your account and realm. The *Sales* box is the only box required to run o
 ![Export CSV](https://github.com/hugobrancowb/tsm_sales_analyzer/blob/master/readme_images_-_how_to_use/02.jpg)
 
 When you run the TSM Sales Analyzer the window below is gonna open.
-  **1.** Select the just exported Sales CSV file. It must be a `.csv` file and have the same name as exported from the TSM Desktop App.
-  **2.** Set the number of months you want to get from the report. It will print the report from the most recent to the older one.
+
+  **1.** Select the just exported Sales CSV file. It must be a `.csv` file and have the same name as exported from the TSM Desktop App.  
+  
+  **2.** Set the number of months you want to get from the report. It will print the report from the most recent to the older one.  
+  
   **3.** Set the number of items you want to get in each month's report.
-  4. Click 'Get report'.
+  
+  **4.** Click 'Get report'.
 
 ![Set the options](https://github.com/hugobrancowb/tsm_sales_analyzer/blob/master/readme_images_-_how_to_use/03.jpg)
 
