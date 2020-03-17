@@ -24,4 +24,4 @@ When you run the TSM Sales Analyzer the window below is gonna open.
 
 ![Set the options](https://github.com/hugobrancowb/tsm_sales_analyzer/blob/master/readme_images_-_how_to_use/03.jpg)
 
-If you find and errors or bugs, send an email to [hugobrancowb@gmail.com](mailto:hugobrancowb@gmail.com).4
+If you find and errors or bugs, send an email to [hugobrancowb@gmail.com](mailto:hugobrancowb@gmail.com).
