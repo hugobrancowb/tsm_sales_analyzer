@@ -1,5 +1,5 @@
 # TSM Sales Analyzer
-TSM Sales Analyzer will read a *'Accounting_<realm>_sales.csv'* file, exported from the TradeSkill Master desktop app, and create a report with the most sold items from the account.
+TSM Sales Analyzer will read a *'Accounting_[realm]_sales.csv'* file, exported from the TradeSkill Master desktop app, and create a report with the most sold items from the account.
 
 This Java program based on [wowSales2019](https://github.com/hugobrancowb/wowSales2019) project.
 
