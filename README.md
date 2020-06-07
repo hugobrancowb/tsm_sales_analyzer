@@ -1,7 +1,5 @@
 # TSM Sales Analyzer
-TSM Sales Analyzer will read a *'Accounting_[realm]_sales.csv'* file, exported from the TradeSkill Master desktop app, and create a report with the most sold items from the account.
-
-This Java program based on [wowSales2019](https://github.com/hugobrancowb/wowSales2019) project.
+Projeto executado em Java que reproduz o algoritmo de um antigo projeto meu ([wowSales2019](https://github.com/hugobrancowb/wowSales2019)) porém com interface gráfica para facilitar o uso do software. Meu objetivo com esse projeto foi aprender e praticar a linguagem Java.
 
 ## How to use
 Open the TSM Desktop App and go to the *Accounting Export* tab.
@@ -25,3 +23,6 @@ When you run the TSM Sales Analyzer the window below is gonna open.
 ![Set the options](https://github.com/hugobrancowb/tsm_sales_analyzer/blob/master/readme_images_-_how_to_use/03.jpg)
 
 If you find and errors or bugs, send an email to [hugobrancowb@gmail.com](mailto:hugobrancowb@gmail.com).
+
+## Keywords
+Java, Business Intelligence, World of Warcraft
